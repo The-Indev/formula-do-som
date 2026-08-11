@@ -10,15 +10,14 @@ createRoot(document.getElementById('root')).render(
   </StrictMode>
 )
 
-// Ativa o fundo animado dos faróis (imagens pesadas) quando a página está ociosa:
-// tira ~2,3MB do caminho crítico (1º paint mais rápido) SEM remover o efeito — ele
-// sempre aparece, logo após o carregamento. É um efeito de marca (mantido inclusive
-// com "reduzir movimento", por ser lento e de baixa frequência).
+// Liga o fundo dos faróis logo após o PRIMEIRO PAINT (não bloqueia o carregamento
+// e não usa preload de alta prioridade). Com o animation-delay do CSS, o primeiro
+// pisque acontece ~2s depois de o site aparecer. É um efeito de marca — sempre visível.
 ;(function enableAmbientFx() {
   const start = () => document.body.classList.add('fx-ready')
-  const idle = window.requestIdleCallback
-    ? (cb) => window.requestIdleCallback(cb, { timeout: 1500 })
-    : (cb) => setTimeout(cb, 300)
-  if (document.readyState === 'complete') idle(start)
-  else window.addEventListener('load', () => idle(start), { once: true })
+  if ('requestAnimationFrame' in window) {
+    requestAnimationFrame(() => requestAnimationFrame(start))
+  } else {
+    setTimeout(start, 50)
+  }
 })()

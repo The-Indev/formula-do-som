@@ -74,13 +74,17 @@ p {
   opacity: 0;
   will-change: opacity;
 }
+/* animation-delay negativo adianta o ciclo: o 1º pisque (pico em 72% de 9s = 6,48s)
+   cai ~2s depois que o efeito liga (6,48 − 4,48 = 2,0s). Depois segue o loop de 9s. */
 body.fx-ready .page-on {
   background-image: url('/assets/wpp-1.png');
   animation: headlightsOn 9s ease-in-out infinite;
+  animation-delay: -4.48s;
 }
 body.fx-ready .page-flash {
   background-image: url('/assets/wpp-2.png');
   animation: headlightsBurst 9s ease-in-out infinite;
+  animation-delay: -4.48s;
 }
 
 /* Faróis acendem só no fim do ciclo -> ~66% do tempo tudo apagado (só a wpp.jpg) */

@@ -16,9 +16,11 @@
     />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="/assets/wpp.jpg" />
-    <!-- Só a imagem base (sempre visível) tem preload. Os overlays pesados dos
-         faróis (wpp-1/wpp-2) carregam sob demanda, fora do caminho crítico. -->
+    <!-- Base (sempre visível): prioridade alta. Farol aceso (1º pisque em ~2s):
+         prioridade BAIXA, baixa em paralelo sem competir com o carregamento crítico.
+         O flare (wpp-2) fica sob demanda. -->
     <link rel="preload" as="image" href="/assets/wpp.jpg" fetchpriority="high" />
+    <link rel="preload" as="image" href="/assets/wpp-1.png" fetchpriority="low" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
