@@ -1,0 +1,82 @@
+/* ============================================================
+   Design tokens da A Fórmula do Som
+   (portados do design system original _ds/… do protótipo)
+   ============================================================ */
+:root {
+  /* Cores base */
+  --fg-black: #0a0a0a;
+  --fg-charcoal: #161616;
+  --fg-charcoal-2: #1f1f1f;
+  --fg-line: #2c2c2c;
+  --brand-orange: #f2883d;
+  --brand-orange-bright: #ff9d4d;
+  --brand-red: #a31b0f;
+  --brand-red-dark: #7a150c;
+  --white: #ffffff;
+  --grey-1: #c7c7c7;
+  --grey-2: #9a9a9a;
+  --grey-3: #6b6b6b;
+
+  --gradient-flame: linear-gradient(
+    160deg,
+    var(--brand-orange-bright) 0%,
+    var(--brand-orange) 35%,
+    var(--brand-red) 75%,
+    var(--brand-red-dark) 100%
+  );
+
+  /* Semânticas */
+  --bg-page: var(--fg-black);
+  --surface-card: var(--fg-charcoal);
+  --surface-card-raised: var(--fg-charcoal-2);
+  --border-subtle: var(--fg-line);
+  --text-primary: var(--white);
+  --text-secondary: var(--grey-2);
+  --text-muted: var(--grey-3);
+  --accent-primary: var(--brand-orange);
+  --accent-primary-hover: var(--brand-orange-bright);
+  --accent-on-accent: #1a0a02;
+  --tag-bg: rgba(0, 0, 0, 0.82);
+
+  /* Tipografia */
+  --font-display: 'Poppins', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'Roboto Mono', ui-monospace, monospace;
+  --text-display-xl: clamp(40px, 6vw, 72px);
+  --text-display-l: 32px;
+  --text-display-m: 24px;
+  --text-heading: 20px;
+  --text-body-l: 17px;
+  --text-body: 15px;
+  --text-body-s: 13px;
+  --text-caption: 12px;
+  --leading-tight: 1.1;
+  --leading-snug: 1.3;
+  --leading-normal: 1.5;
+  --tracking-tight: -0.02em;
+  --tracking-wide: 0.04em;
+
+  /* Espaçamento / raios / sombras */
+  --radius-s: 8px;
+  --radius-m: 14px;
+  --radius-l: 20px;
+  --radius-full: 999px;
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --shadow-glow-orange: 0 0 24px rgba(242, 136, 61, 0.35);
+}
+
+/* Escala tipográfica reduzida no mobile (cascateia para toda a página) */
+@media (max-width: 600px) {
+  :root {
+    --text-display-l: 26px;
+    --text-display-m: 21px;
+    --text-heading: 18px;
+    --text-body-l: 16px;
+  }
+}
+@media (max-width: 380px) {
+  :root {
+    --text-display-l: 23px;
+    --text-body-l: 15px;
+  }
+}

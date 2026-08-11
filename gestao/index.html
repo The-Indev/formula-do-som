@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fórmula do Som · Gestão</title>
+    <meta name="description" content="Sistema de gestão interno da A Fórmula do Som — preços, estoque e financeiro." />
+    <link rel="icon" type="image/jpeg" href="assets/logo.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- ===== Sidebar ===== -->
+      <aside class="sidebar" id="sidebar">
+        <div class="brand">
+          <img src="assets/logo.jpg" alt="" class="brand__logo" />
+          <div class="brand__text">
+            <strong>Fórmula do Som</strong>
+            <span>Gestão interna</span>
+          </div>
+        </div>
+
+        <nav class="nav" id="nav">
+          <button class="nav__item is-active" data-view="dashboard">
+            <span class="nav__ico" data-ic="home"></span> Dashboard
+          </button>
+          <button class="nav__item" data-view="ordens">
+            <span class="nav__ico" data-ic="clipboard-list"></span> Ordens de Serviço
+          </button>
+          <button class="nav__item" data-view="clientes">
+            <span class="nav__ico" data-ic="users"></span> Clientes
+          </button>
+          <button class="nav__item" data-view="precos">
+            <span class="nav__ico" data-ic="banknote"></span> Catálogo
+          </button>
+          <button class="nav__item" data-view="estoque">
+            <span class="nav__ico" data-ic="package"></span> Estoque
+          </button>
+          <button class="nav__item" data-view="financeiro">
+            <span class="nav__ico" data-ic="bar-chart"></span> Financeiro
+          </button>
+          <button class="nav__item" data-view="relatorios">
+            <span class="nav__ico" data-ic="line-chart"></span> Relatórios
+          </button>
+        </nav>
+
+        <div class="sidebar__foot">
+          <button class="theme-toggle" id="themeToggle" title="Alternar tema">
+            <span class="theme-toggle__ico" data-ic="moon"></span>
+            <span class="theme-toggle__label">Modo escuro</span>
+          </button>
+          <button class="theme-toggle" id="resetBtn" title="Restaurar dados de demonstração">
+            <span class="theme-toggle__ico" data-ic="refresh"></span>
+            <span class="theme-toggle__label">Dados demo</span>
+          </button>
+          <p class="sidebar__ver">MVP · v0.2</p>
+        </div>
+      </aside>
+
+      <!-- ===== Main ===== -->
+      <div class="main">
+        <header class="topbar">
+          <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu" data-ic="menu"></button>
+          <div class="topbar__title">
+            <h1 id="pageTitle">Dashboard</h1>
+            <p id="pageSubtitle">Visão geral do negócio</p>
+          </div>
+          <div class="topbar__actions" id="topActions"></div>
+        </header>
+
+        <main class="content" id="content"><!-- render via JS --></main>
+      </div>
+    </div>
+
+    <!-- ===== Modal ===== -->
+    <div class="modal" id="modal" hidden>
+      <div class="modal__backdrop" data-close></div>
+      <div class="modal__card" role="dialog" aria-modal="true">
+        <div class="modal__head">
+          <h2 id="modalTitle">Novo registro</h2>
+          <button class="icon-btn" data-close aria-label="Fechar" data-ic="x"></button>
+        </div>
+        <form id="modalForm" class="modal__form"><!-- fields via JS --></form>
+        <div class="modal__foot">
+          <button class="btn btn--ghost" data-close>Cancelar</button>
+          <button class="btn btn--primary" id="modalSave">Salvar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast" hidden></div>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>

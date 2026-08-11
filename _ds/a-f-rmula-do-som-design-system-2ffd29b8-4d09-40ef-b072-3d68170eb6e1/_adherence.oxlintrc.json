@@ -1,0 +1,237 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "components/core/**",
+              "ui_kits/instagram/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Poppins|Inter|Roboto Mono))/i]",
+        "message": "Font not provided by the design system. Available: Poppins, Inter, Roboto Mono."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute > JSXIdentifier[name!=/^(?:variant|size|children|onClick|disabled|key|ref|className|style|children)$/]",
+        "message": "<Button> doesn't accept that prop. Declared props: variant, size, children, onClick, disabled."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:primary|secondary|ghost)$/]",
+        "message": "<Button> variant must be one of 'primary' | 'secondary' | 'ghost'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:small|medium|large)$/]",
+        "message": "<Button> size must be one of 'small' | 'medium' | 'large'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='CaptionTag'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|tone|key|ref|className|style|children)$/]",
+        "message": "<CaptionTag> doesn't accept that prop. Declared props: children, tone."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='CaptionTag'] > JSXAttribute[name.name='tone'] > Literal[value!=/^(?:dark|flame)$/]",
+        "message": "<CaptionTag> tone must be one of 'dark' | 'flame'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='CategoryBadge'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|key|ref|className|style|children)$/]",
+        "message": "<CategoryBadge> doesn't accept that prop. Declared props: children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='IconChip'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|src|active|seen|key|ref|className|style|children)$/]",
+        "message": "<IconChip> doesn't accept that prop. Declared props: label, src, active, seen."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='PromoCard'] > JSXAttribute > JSXIdentifier[name!=/^(?:image|caption|tag|key|ref|className|style|children)$/]",
+        "message": "<PromoCard> doesn't accept that prop. Declared props: image, caption, tag."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {
+      "Button": {
+        "replaces": []
+      },
+      "CaptionTag": {
+        "replaces": []
+      },
+      "CategoryBadge": {
+        "replaces": []
+      },
+      "IconChip": {
+        "replaces": []
+      },
+      "PromoCard": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--accent-on-accent",
+      "--accent-primary",
+      "--accent-primary-hover",
+      "--bg-page",
+      "--border-subtle",
+      "--brand-orange",
+      "--brand-orange-bright",
+      "--brand-red",
+      "--brand-red-dark",
+      "--fg-black",
+      "--fg-charcoal",
+      "--fg-charcoal-2",
+      "--fg-line",
+      "--font-body",
+      "--font-display",
+      "--font-mono",
+      "--gradient-flame",
+      "--grey-1",
+      "--grey-2",
+      "--grey-3",
+      "--leading-normal",
+      "--leading-snug",
+      "--leading-tight",
+      "--radius-full",
+      "--radius-l",
+      "--radius-m",
+      "--radius-s",
+      "--shadow-card",
+      "--shadow-glow-orange",
+      "--space-1",
+      "--space-2",
+      "--space-3",
+      "--space-4",
+      "--space-5",
+      "--space-6",
+      "--space-7",
+      "--space-8",
+      "--space-9",
+      "--surface-card",
+      "--surface-card-raised",
+      "--tag-bg",
+      "--tag-text",
+      "--text-body",
+      "--text-body-l",
+      "--text-body-s",
+      "--text-caption",
+      "--text-display-l",
+      "--text-display-m",
+      "--text-display-xl",
+      "--text-heading",
+      "--text-muted",
+      "--text-primary",
+      "--text-secondary",
+      "--tracking-normal",
+      "--tracking-tight",
+      "--tracking-wide",
+      "--weight-black",
+      "--weight-bold",
+      "--weight-medium",
+      "--weight-regular",
+      "--weight-semibold",
+      "--white"
+    ],
+    "tokenKinds": {
+      "--fg-black": "color",
+      "--fg-charcoal": "color",
+      "--fg-charcoal-2": "color",
+      "--fg-line": "color",
+      "--brand-orange": "color",
+      "--brand-orange-bright": "color",
+      "--brand-red": "color",
+      "--brand-red-dark": "color",
+      "--white": "color",
+      "--grey-1": "color",
+      "--grey-2": "color",
+      "--grey-3": "color",
+      "--gradient-flame": "color",
+      "--bg-page": "color",
+      "--surface-card": "color",
+      "--surface-card-raised": "color",
+      "--border-subtle": "color",
+      "--text-primary": "font",
+      "--text-secondary": "font",
+      "--text-muted": "font",
+      "--accent-primary": "color",
+      "--accent-primary-hover": "color",
+      "--accent-on-accent": "color",
+      "--tag-bg": "color",
+      "--tag-text": "font",
+      "--font-display": "font",
+      "--font-body": "font",
+      "--font-mono": "font",
+      "--text-display-xl": "font",
+      "--text-display-l": "font",
+      "--text-display-m": "font",
+      "--text-heading": "font",
+      "--text-body-l": "font",
+      "--text-body": "font",
+      "--text-body-s": "font",
+      "--text-caption": "font",
+      "--weight-black": "font",
+      "--weight-bold": "font",
+      "--weight-semibold": "font",
+      "--weight-medium": "font",
+      "--weight-regular": "font",
+      "--leading-tight": "font",
+      "--leading-snug": "font",
+      "--leading-normal": "font",
+      "--tracking-tight": "font",
+      "--tracking-normal": "font",
+      "--tracking-wide": "font",
+      "--space-1": "spacing",
+      "--space-2": "spacing",
+      "--space-3": "spacing",
+      "--space-4": "spacing",
+      "--space-5": "spacing",
+      "--space-6": "spacing",
+      "--space-7": "spacing",
+      "--space-8": "spacing",
+      "--space-9": "spacing",
+      "--radius-s": "radius",
+      "--radius-m": "radius",
+      "--radius-l": "radius",
+      "--radius-full": "radius",
+      "--shadow-card": "shadow",
+      "--shadow-glow-orange": "shadow"
+    },
+    "fontFamilies": [
+      "Inter",
+      "Poppins",
+      "Roboto Mono"
+    ]
+  }
+}

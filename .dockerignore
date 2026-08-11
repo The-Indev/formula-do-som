@@ -1,0 +1,17 @@
+# O build precisa de: app/ (fonte da landing), gestao/ e a Proposta.
+# Abaixo fica de fora o que é pesado ou desnecessário no contexto.
+app/node_modules
+app/dist
+app/.env
+app/.env.*
+app/.vite
+_ds
+assets
+node_modules
+**/node_modules
+Landing Page.dc.html
+support.js
+.thumbnail
+.git
+.gitignore
+DEPLOY.md

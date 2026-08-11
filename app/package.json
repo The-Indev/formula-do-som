@@ -1,0 +1,20 @@
+{
+  "name": "formula-do-som",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Landing page da A Fórmula do Som — estúdio automotivo em Belo Horizonte",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --host --port 4173"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^5.4.11"
+  }
+}

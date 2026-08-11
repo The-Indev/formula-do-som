@@ -1,0 +1,27 @@
+:root{
+--fg-black:#0a0a0a;
+--fg-charcoal:#161616;
+--fg-charcoal-2:#1f1f1f;
+--fg-line:#2c2c2c;
+--brand-orange:#f2883d;
+--brand-orange-bright:#ff9d4d;
+--brand-red:#a31b0f;
+--brand-red-dark:#7a150c;
+--white:#ffffff;
+--grey-1:#c7c7c7;
+--grey-2:#9a9a9a;
+--grey-3:#6b6b6b;
+--gradient-flame:linear-gradient(160deg,var(--brand-orange-bright) 0%,var(--brand-orange) 35%,var(--brand-red) 75%,var(--brand-red-dark) 100%);
+--bg-page:var(--fg-black);
+--surface-card:var(--fg-charcoal);
+--surface-card-raised:var(--fg-charcoal-2);
+--border-subtle:var(--fg-line);
+--text-primary:var(--white);
+--text-secondary:var(--grey-2);
+--text-muted:var(--grey-3);
+--accent-primary:var(--brand-orange);
+--accent-primary-hover:var(--brand-orange-bright);
+--accent-on-accent:#1a0a02;
+--tag-bg:rgba(0,0,0,0.82);
+--tag-text:var(--white);
+}

@@ -1,0 +1,9 @@
+# Scripts de shell sempre em LF (rodam em container Linux)
+*.sh text eol=lf
+
+# Binários (não normalizar fim de linha)
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.webp binary
+*.ico binary
