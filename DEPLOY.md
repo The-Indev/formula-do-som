@@ -54,7 +54,8 @@ docker run --rm -p 8080:80 fds-proto
 ## Observações
 
 - **Performance da landing**: as imagens pesadas do fundo (faróis) foram tiradas do
-  carregamento inicial — entram só quando a página fica ociosa e respeitando
-  "reduzir movimento". A barra de progresso de rolagem usa `transform`/rAF (sem travar).
+  carregamento inicial — entram quando a página fica ociosa (o efeito de faróis
+  piscando continua sempre presente, só carrega logo após o 1º paint). A barra de
+  progresso de rolagem usa `transform`/rAF (sem travar).
 - O gestão é MVP **sem backend**: dados no `localStorage` do navegador de quem acessa
   (cada pessoa vê os dados de demonstração). Multiusuário/na nuvem = Fase 2.

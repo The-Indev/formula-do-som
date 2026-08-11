@@ -10,17 +10,15 @@ createRoot(document.getElementById('root')).render(
   </StrictMode>
 )
 
-// Ativa o fundo animado dos faróis (imagens pesadas) só quando a página está
-// ociosa — tira ~2,3MB do caminho crítico e deixa o primeiro paint muito mais rápido.
-// Respeita "reduzir movimento": nesse caso os overlays nem chegam a carregar.
+// Ativa o fundo animado dos faróis (imagens pesadas) quando a página está ociosa:
+// tira ~2,3MB do caminho crítico (1º paint mais rápido) SEM remover o efeito — ele
+// sempre aparece, logo após o carregamento. É um efeito de marca (mantido inclusive
+// com "reduzir movimento", por ser lento e de baixa frequência).
 ;(function enableAmbientFx() {
-  const start = () => {
-    try {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    } catch (e) {}
-    document.body.classList.add('fx-ready')
-  }
-  const idle = window.requestIdleCallback || ((cb) => setTimeout(cb, 300))
+  const start = () => document.body.classList.add('fx-ready')
+  const idle = window.requestIdleCallback
+    ? (cb) => window.requestIdleCallback(cb, { timeout: 1500 })
+    : (cb) => setTimeout(cb, 300)
   if (document.readyState === 'complete') idle(start)
   else window.addEventListener('load', () => idle(start), { once: true })
 })()
