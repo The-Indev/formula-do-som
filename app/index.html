@@ -16,9 +16,9 @@
     />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="/assets/wpp.jpg" />
-    <link rel="preload" as="image" href="/assets/wpp.jpg" />
-    <link rel="preload" as="image" href="/assets/wpp-1.png" />
-    <link rel="preload" as="image" href="/assets/wpp-2.png" />
+    <!-- Só a imagem base (sempre visível) tem preload. Os overlays pesados dos
+         faróis (wpp-1/wpp-2) carregam sob demanda, fora do caminho crítico. -->
+    <link rel="preload" as="image" href="/assets/wpp.jpg" fetchpriority="high" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

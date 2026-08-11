@@ -4,7 +4,7 @@
 set -e
 
 : "${WEBHOOK_URL:=}"
-TARGET="/usr/share/nginx/html/landing/config.js"
+TARGET="/usr/share/nginx/html/config.js"
 
 cat > "$TARGET" <<EOF
 window.__APP_CONFIG__ = { WEBHOOK_URL: "${WEBHOOK_URL}" };

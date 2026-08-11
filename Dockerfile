@@ -1,10 +1,9 @@
 # ============================================================
-# Protótipo Fórmula do Som — UMA hospedagem, alternável por SUBDOMÍNIO
-#   <dominio> / www.<dominio>   -> Landing (React/Vite)
-#   gestao.<dominio>            -> Sistema de gestão (MVP estático)
-#   proposta.<dominio>          -> Proposta (apresentação)
-# O Nginx decide o site pelo prefixo do subdomínio (server_name regex),
-# então funciona com QUALQUER domínio que você anexar no Easypanel.
+# Protótipo Fórmula do Som — UMA hospedagem, acessível por SUBPASTA
+# (sem precisar cadastrar domínios/subdomínios)
+#   /                  -> Landing (React/Vite)
+#   /sistema-gestao/   -> Sistema de gestão (MVP estático)
+#   /proposta/         -> Proposta (apresentação)
 # ============================================================
 
 # ---------- Stage 1: build da landing (Vite/React) ----------
@@ -15,19 +14,19 @@ RUN npm ci
 COPY app/ ./
 RUN npm run build          # gera /landing/dist
 
-# ---------- Stage 2: Nginx servindo os 3 sites ----------
+# ---------- Stage 2: Nginx servindo os 3 sites por subpasta ----------
 FROM nginx:1.27-alpine AS runtime
 
-# Roteamento por subdomínio + gzip + headers de segurança
+# Roteamento por subpasta + gzip + headers de segurança
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Landing (site padrão)
-COPY --from=build /landing/dist /usr/share/nginx/html/landing
+# Landing na raiz do site
+COPY --from=build /landing/dist /usr/share/nginx/html
 
-# Sistema de gestão
-COPY gestao/ /usr/share/nginx/html/gestao
+# Sistema de gestão em /sistema-gestao/
+COPY gestao/ /usr/share/nginx/html/sistema-gestao/
 
-# Proposta (com logo local para ficar auto-contida)
+# Proposta em /proposta/ (com logo local para ficar auto-contida)
 COPY ["Proposta Sistema de Gestao.html", "/usr/share/nginx/html/proposta/index.html"]
 COPY gestao/assets/logo.jpg /usr/share/nginx/html/proposta/assets/logo.jpg
 

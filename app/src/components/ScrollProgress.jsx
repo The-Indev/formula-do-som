@@ -1,16 +1,26 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef } from 'react'
 
-// Barra fina no topo que reflete o progresso de rolagem da página.
+// Barra fina no topo com o progresso de rolagem.
+// Atualiza via requestAnimationFrame e transform: scaleX() — sem re-render do React
+// e sem forçar layout a cada evento de scroll (rolagem fica fluida).
 export default function ScrollProgress() {
-  const [pct, setPct] = useState(0)
+  const ref = useRef(null)
 
   useEffect(() => {
-    const onScroll = () => {
+    let ticking = false
+    const update = () => {
+      ticking = false
       const h = document.documentElement
       const max = h.scrollHeight - h.clientHeight
-      setPct(max > 0 ? (h.scrollTop / max) * 100 : 0)
+      const pct = max > 0 ? h.scrollTop / max : 0
+      if (ref.current) ref.current.style.transform = `scaleX(${pct})`
     }
-    onScroll()
+    const onScroll = () => {
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(update)
+    }
+    update()
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onScroll)
     return () => {
@@ -19,5 +29,5 @@ export default function ScrollProgress() {
     }
   }, [])
 
-  return <div className="scroll-progress" style={{ width: `${pct}%` }} aria-hidden="true" />
+  return <div ref={ref} className="scroll-progress" aria-hidden="true" />
 }

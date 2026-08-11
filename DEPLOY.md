@@ -1,63 +1,60 @@
-# Deploy — Protótipo Fórmula do Som (UMA hospedagem, por subdomínio)
+# Deploy — Protótipo Fórmula do Som (UMA hospedagem, por subpasta)
 
-Um **único** container Nginx serve os três sites; o **subdomínio** decide qual aparece.
-O roteamento é por `server_name` regex (só o prefixo), então vale para **qualquer domínio**
-que você anexar no Easypanel — sem editar nada.
+Um **único** container Nginx serve os três sites no **mesmo domínio**, por **subpasta** —
+não precisa cadastrar subdomínios.
 
-| Subdomínio (exemplo) | Mostra | Docroot no container |
+| Caminho | Mostra | Docroot no container |
 |---|---|---|
-| `formuladosom.com.br` / `www.` (padrão) | **Landing** (React) | `/landing` |
-| `gestao.formuladosom.com.br` | **Sistema de gestão** (MVP) | `/gestao` |
-| `proposta.formuladosom.com.br` | **Proposta** (apresentação) | `/proposta` |
+| `/` | **Landing** (React) | `/usr/share/nginx/html` |
+| `/sistema-gestao/` | **Sistema de gestão** (MVP) | `/usr/share/nginx/html/sistema-gestao` |
+| `/proposta/` | **Proposta** (apresentação) | `/usr/share/nginx/html/proposta` |
 
-## Arquivos do deploy (na raiz desta pasta)
+## Arquivos do deploy (na raiz do repo)
 
 | Arquivo | Papel |
 |---|---|
-| `Dockerfile` | Build da landing (Vite) + Nginx servindo os 3 sites |
-| `nginx.conf` | Roteamento por subdomínio + gzip + headers |
+| `Dockerfile` | Build da landing (Vite) + Nginx servindo os 3 sites por subpasta |
+| `nginx.conf` | Roteamento por subpasta + gzip + headers |
 | `deploy-entrypoint.sh` | Gera `config.js` da landing a partir de `WEBHOOK_URL` (runtime) |
 | `.dockerignore` | Mantém o contexto de build leve |
 
-> Contexto de build = esta pasta (`Formula do som`), onde estão `app/`, `gestao/` e a Proposta.
+> Contexto de build = a raiz do repo (`app/`, `gestao/` e a Proposta).
 
-## Deploy no Easypanel (uma vez)
+## Deploy no Easypanel
 
-1. **Create → App** apontando para esta pasta.
-2. **Build**: tipo **Dockerfile**, caminho `Dockerfile` (contexto = raiz desta pasta).
+1. **Create → App** apontando para o repositório `The-Indev/formula-do-som`, branch `main`.
+2. **Build**: tipo **Dockerfile**, caminho `Dockerfile`, contexto `/`.
 3. **Environment** (opcional): `WEBHOOK_URL=https://...` para ligar o chat de orçamento da
    landing. Sem isso, o chat cai no WhatsApp (fallback).
-4. **Domains**: adicione os subdomínios que quiser, **todos apontando para o mesmo app**,
-   porta **80** (o Easypanel emite o SSL de cada um):
-   - `formuladosom.com.br` (+ `www`) → landing
-   - `gestao.formuladosom.com.br` → sistema
-   - `proposta.formuladosom.com.br` → proposta
-5. **Deploy**. Cada subdomínio abre o site correspondente.
+4. **Domains**: **1 domínio só** na porta **80**. Pode ser:
+   - o domínio/subdomínio temporário que o **Easypanel já fornece** (sem cadastrar nada), ou
+   - um domínio de vocês, se preferirem.
+5. **Deploy**.
 
-> DNS: aponte cada subdomínio (registro A/CNAME) para o servidor, como já é feito hoje.
+### Links (a partir do domínio que aparecer no passo 4)
+- Landing: `https://SEU-DOMINIO/`
+- Sistema: `https://SEU-DOMINIO/sistema-gestao/`
+- Proposta: `https://SEU-DOMINIO/proposta/`  (o botão "Abrir o sistema" já leva ao gestão)
 
 ### Ligar / desligar
-No Easypanel: **Stop** pausa tudo; **Delete** remove. Para desativar só um site,
-basta **remover o domínio** correspondente na aba Domains (o app segue no ar).
+No Easypanel: **Stop** pausa; **Delete** remove — 1 clique.
 
 ## Teste local (opcional)
-
-Como o roteamento é por Host, use hostnames (o serviço `nip.io` resolve qualquer IP):
 
 ```bash
 cd "Formula do som"
 docker build -t fds-proto .
 docker run --rm -p 8080:80 fds-proto
 
-# landing:   http://127-0-0-1.nip.io:8080/
-# gestão:    http://gestao.127-0-0-1.nip.io:8080/
-# proposta:  http://proposta.127-0-0-1.nip.io:8080/
+# landing:   http://localhost:8080/
+# gestão:    http://localhost:8080/sistema-gestao/
+# proposta:  http://localhost:8080/proposta/
 ```
-
-Ou via header Host: `curl -H "Host: gestao.x" http://localhost:8080/`.
 
 ## Observações
 
+- **Performance da landing**: as imagens pesadas do fundo (faróis) foram tiradas do
+  carregamento inicial — entram só quando a página fica ociosa e respeitando
+  "reduzir movimento". A barra de progresso de rolagem usa `transform`/rAF (sem travar).
 - O gestão é MVP **sem backend**: dados no `localStorage` do navegador de quem acessa
   (cada pessoa vê os dados de demonstração). Multiusuário/na nuvem = Fase 2.
-- A **landing** usa `WEBHOOK_URL` em runtime (config.js) — igual ao deploy atual do `app/`.

@@ -66,18 +66,20 @@ p {
 .page-bg {
   background-image: url('/assets/wpp.jpg');
 }
-/* Overlay 1: faróis acesos (nível normal) */
-.page-on {
-  background-image: url('/assets/wpp-1.png');
+/* Overlays 1 e 2 (faróis acesos + flare): as imagens são pesadas e só aparecem
+   no fim do ciclo. Ficam FORA do carregamento inicial — só entram quando a página
+   está ociosa (classe `fx-ready` adicionada via JS). Economiza ~2,3MB no 1º paint. */
+.page-on,
+.page-flash {
   opacity: 0;
   will-change: opacity;
+}
+body.fx-ready .page-on {
+  background-image: url('/assets/wpp-1.png');
   animation: headlightsOn 9s ease-in-out infinite;
 }
-/* Overlay 2: flare estourando (pico do acender) */
-.page-flash {
+body.fx-ready .page-flash {
   background-image: url('/assets/wpp-2.png');
-  opacity: 0;
-  will-change: opacity;
   animation: headlightsBurst 9s ease-in-out infinite;
 }
 
@@ -1735,11 +1737,13 @@ p {
   top: 0;
   left: 0;
   height: 3px;
-  width: 0;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
   z-index: 70;
   background: var(--gradient-flame);
   box-shadow: 0 0 12px rgba(242, 136, 61, 0.6);
-  transition: width 0.08s linear;
 }
 
 /* Textura sutil de grão por cima de tudo (premium, não interativo) */
