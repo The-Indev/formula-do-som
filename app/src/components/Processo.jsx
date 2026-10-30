@@ -3,22 +3,18 @@ import { processo } from '../data/content'
 
 export default function Processo() {
   return (
-    <section id="processo" className="section section--card">
+    <section id="processo" className="band band--light" data-theme="light">
       <div className="container">
-        <div className="section__head">
-          <span className="badge">Como funciona</span>
-          <h2 className="section__title">Do orçamento à entrega, sem enrolação</h2>
-        </div>
-
-        <div className="grid grid--processo">
-          {processo.map((pr, i) => (
-            <Reveal className="step" key={pr.num} delay={i * 90}>
-              <span className="step__num">{pr.num}</span>
-              <h3 className="step__title">{pr.title}</h3>
-              <p className="step__desc">{pr.desc}</p>
+        <Reveal as="h2" className="h2 band__title">Como funciona</Reveal>
+        <ol className="steps">
+          {processo.map((p, i) => (
+            <Reveal as="li" className="step" key={p.num} delay={i * 100}>
+              <span className="step__num">{p.num}</span>
+              <h3 className="h3">{p.title}</h3>
+              <p>{p.desc}</p>
             </Reveal>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   )

@@ -1,7 +1,7 @@
 // ============================================================
-// Conteúdo da landing — A Fórmula do Som
-// Dados reais: telefones/unidades (Google Meu Negócio), nota 4,4★.
-// Imagens de serviços/portfólio ainda são mock (Unsplash) — trocar pelas oficiais.
+// Conteúdo da landing — A Fórmula do Som (layout editorial)
+// Dados reais: telefones/unidades (Google Meu Negócio), nota 4,4★, 226k no IG.
+// MOCK: imagens do Unsplash — trocar pelas fotos oficiais quando chegarem.
 // ============================================================
 
 export const PHONE_WHATSAPP = '5531983167480';
@@ -11,119 +11,137 @@ export const waLink = (msg = 'Olá! Quero fazer um orçamento com a Fórmula do 
 export const INSTAGRAM = 'https://www.instagram.com/a_formuladosom';
 export const GOOGLE_SEARCH = 'https://www.google.com/search?q=a+formula+do+som+belo+horizonte';
 
-export const GOOGLE_RATING = { score: '4,4', total: '+1.400' };
-
-export const navLinks = [
-  { href: '#servicos', label: 'Serviços' },
-  { href: '#trabalhos', label: 'Trabalhos' },
-  { href: '#valores', label: 'Valores' },
-  { href: '#processo', label: 'Como funciona' },
-  { href: '#unidades', label: 'Unidades' },
+export const socials = [
+  { name: 'Instagram', href: INSTAGRAM },
+  { name: 'TikTok', href: 'https://www.tiktok.com/@a_formuladosom' },
+  { name: 'YouTube', href: 'https://www.youtube.com/@aformuladosom' },
+  { name: 'Linktree', href: 'https://linktr.ee/aformuladosom01' },
 ];
 
-export const stats = [
-  { value: '4,4★', label: '+1.400 avaliações no Google' },
-  { value: '30+', label: 'Anos de experiência' },
-  { value: '226k+', label: 'Seguidores no Instagram' },
-  { value: '3', label: 'Unidades em BH' },
+const img = (id, w = 1600) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
+
+// Abre o chat de orçamento (OrcamentoChat escuta este evento)
+export const openOrcamentoChat = () => window.dispatchEvent(new CustomEvent('open-orcamento-chat'));
+
+// ---------- Hero ----------
+export const hero = {
+  tagline: 'O seu estúdio automotivo. Belo Horizonte, desde 1994.',
+  cta: 'Fazer meu orçamento',
+};
+
+// ---------- Painel de abertura (dispensável, 1x por sessão) ----------
+export const promo = {
+  image: img('photo-1583121274602-3e2820c69888', 720),
+  title: 'Cansado do carro que todo mundo tem?',
+  subtitle: 'Bora resolver. Orçamento sem compromisso.',
+  cta: 'Pedir orçamento na hora',
+};
+
+// ---------- A Fórmula do Som (3 cards) ----------
+export const casa = [
+  { title: 'Nossos serviços', href: '#servicos', image: img('photo-1552519507-da3b142c6e3d', 900), alt: 'Faróis de LED acesos à noite' },
+  { title: 'Como trabalhamos', href: '#processo', image: img('photo-1449965408869-eaa3f722e40d', 900), alt: 'Interior de carro com central multimídia' },
+  { title: '3 unidades em BH', href: '#unidades', image: img('photo-1494905998402-395d579af36f', 900), alt: 'Carro estacionado na cidade' },
 ];
 
-export const marquee = [
-  'Películas', 'Insulfilm', 'Iluminação', 'Super LED', 'Kit Neon RGB',
-  'Multimídia', 'Som Automotivo', 'Revestimento', 'Plotter', 'Envelopamento',
-  'Pole Position', 'Alarmes & Acessórios', 'Detailing', 'Estética Premium',
-];
-
-export const services = [
-  { icon: '🌫️', title: 'Películas & Insulfilm', desc: 'Películas térmicas e de proteção premium: menos calor, mais privacidade e bloqueio UV, com instalação sem bolhas e garantia.', image: 'https://images.unsplash.com/photo-1494905998402-395d579af36f?auto=format&fit=crop&w=900&q=80' },
-  { icon: '💡', title: 'Iluminação LED & Super LED', desc: 'Faróis Super LED, iluminação interna e detalhes externos que transformam o visual do carro de dia e de noite.', image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=900&q=80' },
-  { icon: '🌈', title: 'Kit Neon RGB', desc: 'Iluminação ambiente RGB no interior, com controle de cores e efeitos — o brilho que faz seu carro virar assunto.', image: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=900&q=80' },
-  { icon: '📱', title: 'Multimídia & Som', desc: 'Centrais Android/CarPlay, câmeras de ré e projetos de som automotivo — tecnologia integrada ao painel do seu jeito.', image: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=900&q=80' },
-  { icon: '🪡', title: 'Revestimento', desc: 'Bancos, volante e acabamentos internos revestidos com material de alta qualidade e costura sob medida.', image: 'https://images.unsplash.com/photo-1493238792000-8113da705763?auto=format&fit=crop&w=900&q=80' },
-  { icon: '🎨', title: 'Plotter & Envelopamento', desc: 'Adesivagem, faixas e envelopamento com recorte de plotter — personalização precisa do detalhe ao carro inteiro.', image: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=900&q=80' },
-  { icon: '🔒', title: 'Alarmes & Acessórios', desc: 'Alarmes, travas, sensores e acessórios de segurança e conforto instalados por quem é referência em BH desde 1994.', image: 'https://images.unsplash.com/photo-1550355291-bbee04a92027?auto=format&fit=crop&w=900&q=80' },
-];
-
-export const showcases = [
-  {
-    badge: 'Películas',
-    title: 'Proteção que se sente no conforto e se vê no brilho',
-    desc: 'Películas térmicas e de proteção que reduzem o calor, garantem privacidade e blindam a pintura e os vidros — com acabamento impecável.',
-    bullets: ['Bloqueio de calor e raios UV', 'Aplicação sem bolhas', 'Garantia no serviço'],
-    image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1200&q=80',
-    cta: 'Quero orçar película',
-    reverse: false,
-  },
-  {
-    badge: 'Iluminação',
-    title: 'Iluminação que faz o seu carro virar assunto',
-    desc: 'Super LED, teto de estrelas, kit neon RGB e detalhes externos instalados com acabamento limpo — impacto visual do estacionamento à estrada.',
-    bullets: ['Faróis Super LED', 'Ambiente RGB com controle', 'Instalação limpa, sem gambiarra'],
-    image: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=1200&q=80',
-    cta: 'Ver opções de LED',
-    reverse: true,
-  },
-  {
-    badge: 'Multimídia',
-    title: 'Tecnologia integrada ao painel, do jeito certo',
-    desc: 'Centrais inteligentes, som automotivo e conectividade instalados com chicotes originais — sem cortar fios, sem perder garantia.',
-    bullets: ['Android / Apple CarPlay', 'Chicotes originais, plug-and-play', 'Acabamento de fábrica'],
-    image: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=1200&q=80',
-    cta: 'Montar minha central',
-    reverse: false,
-  },
-];
-
-export const diferenciais = [
-  { icon: '⭐', title: '30 anos de estrada', desc: 'Desde 1994 transformando carros em BH — experiência que você vê no acabamento.' },
-  { icon: '⚡', title: 'Instalação segura', desc: 'Chicotes originais, sem cortar fios — sua garantia de fábrica permanece intacta.' },
-  { icon: '🛠️', title: 'Acabamento VIP', desc: 'Integração perfeita ao design original do carro, sem rasuras nem improviso.' },
-  { icon: '📍', title: '3 unidades em BH', desc: 'Glória, Buritis e Lourdes, com equipe pronta pra atender do orçamento à entrega.' },
-];
-
-export const projects = [
-  { image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80', tag: 'Super LED', alt: 'Faróis em LED' },
-  { image: 'https://images.unsplash.com/photo-1494905998402-395d579af36f?auto=format&fit=crop&w=800&q=80', tag: 'Película', alt: 'Carro com película aplicada' },
-  { image: 'https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=800&q=80', tag: 'Detailing', alt: 'Detalhamento do carro' },
-  { image: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=800&q=80', tag: 'Multimídia', alt: 'Interior com multimídia' },
-  { image: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=800&q=80', tag: 'Neon RGB', alt: 'Iluminação neon RGB' },
-  { image: 'https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?auto=format&fit=crop&w=800&q=80', tag: 'Estética', alt: 'Carro personalizado' },
-];
-
+// ---------- Sob Medida (planos, sem preço fixo — decisão do cliente) ----------
 export const planos = [
-  { badge: 'Essencial', title: 'Comece pelo básico', desc: 'Ideal pra quem quer dar o primeiro upgrade no carro com custo enxuto.', items: ['Insulfilm / película', 'Alarme e acessórios', 'Iluminação LED básica'], cta: 'Orçar o Essencial', highlight: false },
-  { badge: 'Completo', title: 'O mais pedido', desc: 'O combo que transforma o visual e a experiência a bordo de vez.', items: ['Película + Super LED', 'Multimídia com CarPlay/Android', 'Kit Neon RGB'], cta: 'Orçar o Completo', highlight: true },
-  { badge: 'Premium', title: 'Projeto sob medida', desc: 'Do zero ao acabamento de concessionária, pensado só pro seu carro.', items: ['Revestimento e som premium', 'Plotter / envelopamento', 'Projeto personalizado completo'], cta: 'Montar meu projeto', highlight: false },
+  { name: 'Essencial', desc: 'O primeiro upgrade, com custo enxuto.', items: ['Insulfilm / película', 'Alarme e acessórios', 'Iluminação LED básica'] },
+  { name: 'Completo', desc: 'O combo mais pedido da casa.', items: ['Película + Super LED', 'Multimídia CarPlay / Android', 'Kit Neon RGB'] },
+  { name: 'Premium', desc: 'Projeto pensado só pro seu carro.', items: ['Revestimento e som premium', 'Plotter / envelopamento', 'Projeto personalizado completo'] },
 ];
 
+// ---------- Reconhecimento (2 cards) ----------
+export const reconhecimento = [
+  { title: 'Google · 4,4 ★', subtitle: '+1.400 avaliações somando as 3 unidades', href: GOOGLE_SEARCH, image: img('photo-1553440569-bcc63803a83d', 1200), alt: 'Carro polido sob luz de estúdio' },
+  { title: 'Instagram · @a_formuladosom', subtitle: '226 mil pessoas acompanhando cada projeto', href: INSTAGRAM, image: img('photo-1517524008697-84bbe3c3fd98', 1200), alt: 'Carro personalizado à noite' },
+];
+
+// ---------- Serviços (blocos de largura total) ----------
+export const servicos = [
+  { slug: 'peliculas', name: 'Películas', phrase: 'Menos calor. Mais privacidade.', desc: 'Películas térmicas e de proteção com bloqueio UV, aplicação sem bolhas e garantia.', pattern: 'dots', image: img('photo-1555215695-3004980ad54e') },
+  { slug: 'iluminacao', name: 'Iluminação & Super LED', phrase: 'A noite vira o seu palco', desc: 'Faróis Super LED, iluminação interna e detalhes externos com instalação limpa.', pattern: 'lines', image: img('photo-1552519507-da3b142c6e3d') },
+  { slug: 'neon', name: 'Kit Neon RGB', phrase: 'Cor sob o seu comando', desc: 'Iluminação ambiente RGB com controle de cores e efeitos — o brilho que vira assunto.', pattern: 'dots', image: img('photo-1583121274602-3e2820c69888') },
+  { slug: 'multimidia', name: 'Multimídia & Som', phrase: 'Tecnologia com acabamento de fábrica', desc: 'Centrais Android / CarPlay e projetos de som com chicotes originais, sem cortar fios.', pattern: 'lines', image: img('photo-1449965408869-eaa3f722e40d') },
+  { slug: 'revestimento', name: 'Revestimento', phrase: 'Costura sob medida', desc: 'Bancos, volante e acabamentos internos em material de alta qualidade.', pattern: 'dots', image: img('photo-1493238792000-8113da705763') },
+  { slug: 'plotter', name: 'Plotter & Envelopamento', phrase: 'Do detalhe ao carro inteiro', desc: 'Adesivagem, faixas e envelopamento com recorte de plotter de precisão.', pattern: 'lines', image: img('photo-1568605117036-5fe5e7bab0b7') },
+  { slug: 'alarmes', name: 'Alarmes & Acessórios', phrase: 'Segurança desde 1994', desc: 'Alarmes, travas, sensores e acessórios de conforto instalados por quem é referência em BH.', pattern: 'dots', image: img('photo-1550355291-bbee04a92027') },
+];
+
+// ---------- Como funciona ----------
 export const processo = [
-  { num: '01', title: 'Fale com a gente', desc: 'Manda uma mensagem no WhatsApp contando o carro e o que você quer fazer.' },
-  { num: '02', title: 'Orçamento sob medida', desc: 'Avaliamos seu veículo e enviamos um projeto com prazo e valor transparentes.' },
-  { num: '03', title: 'Mãos à obra', desc: 'Nossa equipe executa com material premium e acabamento de fábrica.' },
-  { num: '04', title: 'Entrega impecável', desc: 'Você recebe o carro pronto, testado e com aquele acabamento de dar orgulho.' },
+  { num: '01', title: 'Fale com a gente', desc: 'Conte no WhatsApp qual é o carro e o que você quer fazer.' },
+  { num: '02', title: 'Orçamento sob medida', desc: 'Avaliamos o veículo e enviamos o projeto com prazo e valor transparentes.' },
+  { num: '03', title: 'Mãos à obra', desc: 'Equipe própria, material premium e acabamento de fábrica.' },
+  { num: '04', title: 'Entrega impecável', desc: 'O carro volta pronto, testado e com aquele acabamento de dar orgulho.' },
 ];
 
 // 1º item é avaliação REAL do Google; os demais são ilustrativos.
 export const depoimentos = [
-  { text: 'Parabéns a todos da equipe da A Fórmula do Som! Serviço de primeira, do começo ao fim.', name: 'Cliente Google', car: 'Avaliação real · Google', initial: 'G' },
-  { text: 'Fizeram a película e a iluminação no meu carro e ficou surreal. Acabamento perfeito, sem uma bolha. Recomendo demais!', name: 'Rafael M.', car: 'Cliente unidade Buritis', initial: 'R' },
-  { text: 'Instalaram a multimídia sem cortar nenhum fio. Ficou parecendo de fábrica. Melhor da cidade!', name: 'Diego A.', car: 'Cliente unidade Lourdes', initial: 'D' },
+  { text: 'Parabéns a todos da equipe da A Fórmula do Som! Serviço de primeira, do começo ao fim.', name: 'Cliente Google', origin: 'Avaliação real · Google' },
+  { text: 'Fizeram a película e a iluminação no meu carro e ficou surreal. Acabamento perfeito, sem uma bolha.', name: 'Rafael M.', origin: 'Unidade Buritis' },
+  { text: 'Instalaram a multimídia sem cortar nenhum fio. Ficou parecendo de fábrica.', name: 'Diego A.', origin: 'Unidade Lourdes' },
 ];
 
 // Dados reais (Google Meu Negócio): nota, avaliações e telefone por unidade.
 export const unidades = [
-  { name: 'Unidade Glória', address: 'Av. Brigadeiro Eduardo Gomes, 2066 — Glória, Belo Horizonte/MG', phone: '(31) 3474-3176', rating: '4,4', reviews: '1,2 mil', map: 'https://www.google.com/maps/search/?api=1&query=A+Formula+do+Som+Av.+Brigadeiro+Eduardo+Gomes+2066+Belo+Horizonte' },
-  { name: 'Unidade Buritis', address: 'Av. Aggeo Pio Sobrinho, 81 — Buritis, Belo Horizonte/MG', phone: '(31) 3565-8825', rating: '4,4', reviews: '135', map: 'https://www.google.com/maps/search/?api=1&query=A+Formula+do+Som+Av.+Aggeo+Pio+Sobrinho+81+Belo+Horizonte' },
-  { name: 'Unidade Lourdes', address: 'Av. Bias Fortes, 945 — Lourdes, Belo Horizonte/MG', phone: '(31) 3166-4917', rating: '4,4', reviews: '92', map: 'https://www.google.com/maps/search/?api=1&query=A+Formula+do+Som+Av.+Bias+Fortes+945+Belo+Horizonte' },
+  { name: 'Glória', address: 'Av. Brigadeiro Eduardo Gomes, 2066 — Glória, Belo Horizonte/MG', phone: '(31) 3474-3176', rating: '4,4', reviews: '1,2 mil', map: 'https://www.google.com/maps/search/?api=1&query=A+Formula+do+Som+Av.+Brigadeiro+Eduardo+Gomes+2066+Belo+Horizonte' },
+  { name: 'Buritis', address: 'Av. Aggeo Pio Sobrinho, 81 — Buritis, Belo Horizonte/MG', phone: '(31) 3565-8825', rating: '4,4', reviews: '135', map: 'https://www.google.com/maps/search/?api=1&query=A+Formula+do+Som+Av.+Aggeo+Pio+Sobrinho+81+Belo+Horizonte' },
+  { name: 'Lourdes', address: 'Av. Bias Fortes, 945 — Lourdes, Belo Horizonte/MG', phone: '(31) 3166-4917', rating: '4,4', reviews: '92', map: 'https://www.google.com/maps/search/?api=1&query=A+Formula+do+Som+Av.+Bias+Fortes+945+Belo+Horizonte' },
+];
+
+// ---------- Feed (Fórmula Live) — MOCK até integrar o Instagram ----------
+export const posts = [
+  { image: img('photo-1552519507-da3b142c6e3d', 700), tag: 'Super LED', alt: 'Faróis em LED', reel: true },
+  { image: img('photo-1494905998402-395d579af36f', 700), tag: 'Película', alt: 'Carro com película aplicada' },
+  { image: img('photo-1553440569-bcc63803a83d', 700), tag: 'Detailing', alt: 'Detalhamento do carro' },
+  { image: img('photo-1449965408869-eaa3f722e40d', 700), tag: 'Multimídia', alt: 'Interior com multimídia', reel: true },
+  { image: img('photo-1583121274602-3e2820c69888', 700), tag: 'Neon RGB', alt: 'Iluminação neon RGB' },
+  { image: img('photo-1517524008697-84bbe3c3fd98', 700), tag: 'Estética', alt: 'Carro personalizado' },
 ];
 
 export const faqs = [
-  { q: 'Quanto tempo demora um serviço?', a: 'Depende do projeto: serviços simples ficam prontos no mesmo dia, projetos completos de película, iluminação ou multimídia podem levar de 2 a 5 dias úteis. Você recebe o prazo exato no orçamento.' },
+  { q: 'Quanto tempo demora um serviço?', a: 'Depende do projeto: serviços simples ficam prontos no mesmo dia; projetos completos de película, iluminação ou multimídia levam de 2 a 5 dias úteis. O prazo exato vem no orçamento.' },
   { q: 'O serviço perde a garantia do veículo?', a: 'Não. Trabalhamos com chicotes originais e conexões plug-and-play, sem cortar fios de fábrica — sua garantia permanece intacta.' },
-  { q: 'Vocês atendem qualquer modelo de carro?', a: 'Sim! Cada projeto é pensado sob medida para o seu veículo, do encaixe das películas ao acabamento da iluminação e do revestimento.' },
-  { q: 'Onde ficam as unidades?', a: 'Temos 3 unidades em Belo Horizonte: Glória (Av. Brigadeiro Eduardo Gomes, 2066), Buritis (Av. Aggeo Pio Sobrinho, 81) e Lourdes (Av. Bias Fortes, 945).' },
-  { q: 'Quanto custa? Vocês têm tabela de preços?', a: 'Cada serviço é sob orçamento, porque o valor muda conforme o modelo do carro, o material escolhido e o tamanho do projeto. Você recebe um orçamento transparente e sem compromisso antes de fechar qualquer coisa — e combina forma de pagamento e parcelamento com a equipe.' },
-  { q: 'Como faço um orçamento?', a: 'É só chamar no WhatsApp (31) 98316-7480 contando qual é o carro e o que você quer fazer. Respondemos com um orçamento sem compromisso.' },
+  { q: 'Vocês atendem qualquer modelo de carro?', a: 'Sim. Cada projeto é pensado sob medida para o seu veículo, do encaixe das películas ao acabamento da iluminação e do revestimento.' },
+  { q: 'Quanto custa? Vocês têm tabela de preços?', a: 'Cada serviço é sob orçamento, porque o valor muda conforme o modelo do carro, o material e o tamanho do projeto. Você recebe um orçamento transparente e sem compromisso antes de fechar — e combina pagamento e parcelamento com a equipe.' },
+  { q: 'Como faço um orçamento?', a: 'Use o “Orçamento na hora” aqui no site ou chame no WhatsApp (31) 98316-7480 contando qual é o carro e o que você quer fazer.' },
 ];
 
-export const finalCtaBg = 'https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&w=1920&q=80';
+export const assinatura = 'Ninguém percebe onde termina o carro e começa o nosso trabalho.';
+
+// ---------- Navegação: menu em tela cheia e rodapé usam os mesmos grupos ----------
+export const navGroups = [
+  {
+    title: 'Serviços',
+    image: img('photo-1552519507-da3b142c6e3d', 1200),
+    links: servicos.map((s) => ({ label: s.name, href: `#servico-${s.slug}` })),
+  },
+  {
+    title: 'A Fórmula',
+    image: img('photo-1449965408869-eaa3f722e40d', 1200),
+    links: [
+      { label: 'Quem somos', href: '#casa' },
+      { label: 'Projeto Sob Medida', href: '#sob-medida' },
+      { label: 'Como funciona', href: '#processo' },
+      { label: 'Depoimentos', href: '#depoimentos' },
+      { label: 'Fórmula Live', href: '#live' },
+    ],
+  },
+  {
+    title: 'Unidades',
+    image: img('photo-1494905998402-395d579af36f', 1200),
+    links: unidades.map((u) => ({ label: u.name, href: u.map, external: true })),
+  },
+  {
+    title: 'Atendimento',
+    image: img('photo-1583121274602-3e2820c69888', 1200),
+    links: [
+      { label: 'Orçamento na hora', action: 'chat' },
+      { label: 'WhatsApp (31) 98316-7480', href: waLink(), external: true },
+      { label: 'Telefone (31) 3474-4498', href: 'tel:+553134744498' },
+      { label: 'aformuladosom01@hotmail.com', href: 'mailto:aformuladosom01@hotmail.com' },
+      { label: 'Perguntas frequentes', href: '#faq' },
+    ],
+  },
+];
