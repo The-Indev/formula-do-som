@@ -1,30 +1,58 @@
-import GoogleBadge from './GoogleBadge'
+import { useEffect, useState } from 'react'
 import Reveal from './Reveal'
-import { depoimentos } from '../data/content'
+import { depoimentos, GOOGLE_SEARCH } from '../data/content'
 
+// Citação grande em fade cruzado; troca sozinha a cada 7s (pausa no hover/foco)
 export default function Depoimentos() {
-  return (
-    <section className="section container">
-      <div className="section__head" style={{ maxWidth: 700 }}>
-        <span className="badge">Depoimentos</span>
-        <h2 className="section__title">Quem confia, volta e indica</h2>
-        <GoogleBadge solid meta="+1.400 avaliações no Google · 3 unidades" />
-      </div>
+  const [current, setCurrent] = useState(0)
+  const [paused, setPaused] = useState(false)
 
-      <div className="grid grid--depo">
-        {depoimentos.map((dp, i) => (
-          <Reveal className="quote-card" key={dp.name} delay={i * 100}>
-            <span className="quote-card__stars">★★★★★</span>
-            <p className="quote-card__text">“{dp.text}”</p>
-            <div className="quote-card__who">
-              <div className="avatar">{dp.initial}</div>
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <span className="quote-card__name">{dp.name}</span>
-                <span className="quote-card__meta">{dp.car}</span>
-              </div>
-            </div>
-          </Reveal>
-        ))}
+  useEffect(() => {
+    if (paused) return
+    const t = setTimeout(() => setCurrent((c) => (c + 1) % depoimentos.length), 7000)
+    return () => clearTimeout(t)
+  }, [current, paused])
+
+  return (
+    <section
+      id="depoimentos"
+      className="band band--dark band--tall"
+      data-theme="dark"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={() => setPaused(false)}
+    >
+      <div className="container center">
+        <Reveal as="h2" className="eyebrow">Depoimentos · Google 4,4 ★</Reveal>
+        <div className="quotes">
+          {depoimentos.map((d, i) => (
+            <figure key={d.name} className={`quote ${i === current ? 'is-active' : ''}`} aria-hidden={i !== current}>
+              <blockquote>“{d.text}”</blockquote>
+              <figcaption>
+                {d.name} <span>· {d.origin}</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <div className="quotes__nav" role="tablist" aria-label="Depoimentos">
+          {depoimentos.map((d, i) => (
+            <button
+              key={d.name}
+              type="button"
+              role="tab"
+              aria-selected={i === current}
+              aria-label={`Depoimento ${i + 1}`}
+              className={i === current ? 'is-active' : ''}
+              onClick={() => setCurrent(i)}
+            >
+              {String(i + 1).padStart(2, '0')}
+            </button>
+          ))}
+        </div>
+        <a className="textlink" href={GOOGLE_SEARCH} target="_blank" rel="noopener">
+          Ler as +1.400 avaliações no Google
+        </a>
       </div>
     </section>
   )

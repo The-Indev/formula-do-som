@@ -1,82 +1,79 @@
 /* ============================================================
-   Design tokens da A Fórmula do Som
-   (portados do design system original _ds/… do protótipo)
+   Design tokens — layout editorial (preto e branco, cantos retos)
+   A cor vem das fotos; nenhuma cor de acento decorativa.
    ============================================================ */
 :root {
-  /* Cores base */
-  --fg-black: #0a0a0a;
-  --fg-charcoal: #161616;
-  --fg-charcoal-2: #1f1f1f;
-  --fg-line: #2c2c2c;
-  --brand-orange: #f2883d;
-  --brand-orange-bright: #ff9d4d;
-  --brand-red: #a31b0f;
-  --brand-red-dark: #7a150c;
-  --white: #ffffff;
-  --grey-1: #c7c7c7;
-  --grey-2: #9a9a9a;
-  --grey-3: #6b6b6b;
-
-  --gradient-flame: linear-gradient(
-    160deg,
-    var(--brand-orange-bright) 0%,
-    var(--brand-orange) 35%,
-    var(--brand-red) 75%,
-    var(--brand-red-dark) 100%
-  );
-
-  /* Semânticas */
-  --bg-page: var(--fg-black);
-  --surface-card: var(--fg-charcoal);
-  --surface-card-raised: var(--fg-charcoal-2);
-  --border-subtle: var(--fg-line);
-  --text-primary: var(--white);
-  --text-secondary: var(--grey-2);
-  --text-muted: var(--grey-3);
-  --accent-primary: var(--brand-orange);
-  --accent-primary-hover: var(--brand-orange-bright);
-  --accent-on-accent: #1a0a02;
-  --tag-bg: rgba(0, 0, 0, 0.82);
+  /* Cores */
+  --bg-dark: #000000;
+  --bg-light: #ffffff;
+  --bg-soft: #f4f4f2;
+  --text-on-dark: #ffffff;
+  --text-on-light: #0a0a0a;
+  --text-muted: #8a8a8a;
+  --muted-on-dark: rgba(255, 255, 255, 0.62);
+  --muted-on-light: #5c5c5c;
+  --line-dark: rgba(255, 255, 255, 0.2);
+  --line-light: rgba(0, 0, 0, 0.15);
+  --overlay: linear-gradient(to top, rgba(0, 0, 0, 0.55), transparent 60%);
+  --error: #b3261e;
 
   /* Tipografia */
-  --font-display: 'Poppins', system-ui, sans-serif;
-  --font-body: 'Inter', system-ui, sans-serif;
-  --font-mono: 'Roboto Mono', ui-monospace, monospace;
-  --text-display-xl: clamp(40px, 6vw, 72px);
-  --text-display-l: 32px;
-  --text-display-m: 24px;
-  --text-heading: 20px;
-  --text-body-l: 17px;
-  --text-body: 15px;
-  --text-body-s: 13px;
-  --text-caption: 12px;
-  --leading-tight: 1.1;
-  --leading-snug: 1.3;
-  --leading-normal: 1.5;
-  --tracking-tight: -0.02em;
-  --tracking-wide: 0.04em;
+  --font-display: 'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif;
+  --font-body: 'Inter', 'Helvetica Neue', system-ui, sans-serif;
+  --fs-display: clamp(36px, 5vw, 72px);
+  --fs-h2: clamp(28px, 3.4vw, 48px);
+  --fs-h3: clamp(20px, 2vw, 28px);
+  --fs-tagline: clamp(16px, 1.3vw, 18px);
+  --fs-body: 16px;
+  --fs-label: 13px;
+  --fs-caption: 12px;
 
-  /* Espaçamento / raios / sombras */
-  --radius-s: 8px;
-  --radius-m: 14px;
-  --radius-l: 20px;
-  --radius-full: 999px;
-  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.45);
-  --shadow-glow-orange: 0 0 24px rgba(242, 136, 61, 0.35);
+  /* Espaçamento (escala de 8px) */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 16px;
+  --s-4: 24px;
+  --s-5: 32px;
+  --s-6: 48px;
+  --s-7: 64px;
+  --s-8: 96px;
+  --s-9: 128px;
+  --gutter: 20px;
+  --band-pad: 64px;
+  --gap: 16px;
+  --header-h: 56px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 150ms;
+  --dur-base: 300ms;
+  --dur-slow: 800ms;
+
+  /* Camadas */
+  --z-overlay: 1;
+  --z-fab: 90;
+  --z-header: 100;
+  --z-chat: 150;
+  --z-menu: 200;
+  --z-promo: 300;
+  --z-loader: 500;
 }
 
-/* Escala tipográfica reduzida no mobile (cascateia para toda a página) */
-@media (max-width: 600px) {
+@media (min-width: 768px) {
   :root {
-    --text-display-l: 26px;
-    --text-display-m: 21px;
-    --text-heading: 18px;
-    --text-body-l: 16px;
+    --gutter: 32px;
   }
 }
-@media (max-width: 380px) {
+@media (min-width: 1024px) {
   :root {
-    --text-display-l: 23px;
-    --text-body-l: 15px;
+    --band-pad: 96px;
+    --gap: 24px;
+    --header-h: 72px;
+  }
+}
+@media (min-width: 1280px) {
+  :root {
+    --gutter: 48px;
   }
 }
